@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FRED API Example</title>
+    
+</head>
+<body>
+    <h1>FRED Data</h1>
+    
+    <form>
+        <label for="textboxType">Fetch Type:</label>
+        <input type="text" id="textboxType" name="textboxType">
+        
+    </form>
+
+    <form>
+        <label for="textboxSubType">Fetch SubType:</label>
+        <input type="text" id="textboxSubType" name="textboxSubType">
+        
+    </form>
+    <form>
+        <label for="textboxID">Enter ID:</label>
+        <input type="text" id="textboxID" name="textboxID">
+        
+    </form>
+    <button id="fetch-data-button">Fetch Data</button>
+
+    <div id="category-data"></div>
+    <div id="category-List"></div>
+    <div id="category-IDList"></div>
+
+    <table id="category-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    
+
+    <p>category: children, related, series, tags, related_tags</p>
+    <p>release(s): dates, series, sources, tags, relatedd_tags, tables</p>
+    <p>series: categories, observations, release, search: {tags, related_tags}, tags, related_tags, tables</p>
+
+    <script src="apiPull.js"></script>
+</body>
+</html>
