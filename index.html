@@ -6,29 +6,107 @@
 </head>
 <body>
     <h1>FRED Data</h1>
+    <button id="test">Test</button>
     
-    <form>
-        <label for="textboxType">Fetch Type:</label>
-        <input type="text" id="textboxType" name="textboxType">
+    <h3>Category</h3>
         
-    </form>
 
-    <form>
-        <label for="textboxSubType">Fetch SubType:</label>
-        <input type="text" id="textboxSubType" name="textboxSubType">
+        <form>
+            <label for="categoryDD">Fetch from Category:</label>
+            <select id="categoryDD" name="categoryDD">
+                <option value=""></option>
+                <option value="children">Children</option>
+                <option value="Related">Related</option>
+                <option value="series">Series</option>
+                <option value="tags">Tags</option>
+                <option value="related_tags">Related_tags</option>
+            </select>
+            
+        </form>
+        <form>
+            <label for="categoryID">Enter ID:</label>
+            <input type="text" id="categoryID" name="categoryID">
+            
+        </form>
+        <form>
+            <label for="categoryTag">(Optional) Enter Tag:</label>
+            <input type="text" id="categoryTag" name="categoryTag">
+            
+        </form>
+        <button id="fetch-data-button-c">Fetch Data</button>
+
+        <table id="category-table-c">
+            <thead>
+                <tr id = "list_names-c">
+                    
+    
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    <h3>Series</h3>
+        <form>
+            <label for="seriesDD">Fetch from Series:</label>
+            <select id="seriesDD" name="seriesDD">
+                <option value=""></option>
+                <option value="categories">Categories</option>
+                <option value="observations">Observations</option>
+                <option value="release">Release</option>
+                <option value="tags">Tags</option>
+                <option value="updates">Updates</option>
+            </select>
+            
+        </form>
+        <form>
+            <label for="seriesID">Enter ID:</label>
+            <input type="text" id="seriesID" name="seriesID">
+            
+        </form>
+        <form>
+            <label for="seriesTag">(Optional) Enter Tag:</label>
+            <input type="text" id="seriesTag" name="seriesTag">
+            
+        </form>
+        <button id="fetch-data-button-s">Fetch Data</button>
+
+        <table id="category-table-s">
+            <thead>
+                <tr id = "list_names-s">
+                    
+    
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
         
+    <h3>Releases(currently non functional)</h3>
+        <form>
+            
+            <label for="categoryDD">Fetch from Releases:</label>
+            <select id="categoryDD" name="options">
+                <option value=""></option>
+                <option value="children">Children</option>
+                <option value="Related">Related</option>
+                <option value="series">Series</option>
+                <option value="tags">Tags</option>
+                <option value="related_tags">Related_tags</option>
+            </select>
+            
+        </form>
+        <form>
+            <label for="textboxID">Enter ID:</label>
+            <input type="text" id="textboxID" name="textboxID">
+            
+        </form>
+        <form>
+            <label for="textboxTag">(Optional) Enter Tag:</label>
+            <input type="text" id="textboxTag" name="textboxTag">
+            
     </form>
-    <form>
-        <label for="textboxID">Enter ID:</label>
-        <input type="text" id="textboxID" name="textboxID">
-        
-    </form>
-    <form>
-        <label for="textboxTag">(Optional) Enter Tag:</label>
-        <input type="text" id="textboxTag" name="textboxTag">
-        
-    </form>
-    <button id="fetch-data-button">Fetch Data</button>
+    
 
     <div id="category-data"></div>
     <div id="category-List"></div>
@@ -52,5 +130,37 @@
     <p>series: categories, observations, release, search: {tags, related_tags}, tags, related_tags, tables</p>
 
     <script src="apiPull.js"></script>
+    <div>
+        <canvas id="myChart"></canvas>
+      </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <script>
+        const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+
+       <div style="width: 800px;"><canvas id="chart"></canvas></div>
+       <script type="module" src="chart.js"></script>
+
 </body>
 </html>
