@@ -219,7 +219,7 @@ document.getElementById('test').addEventListener('click', async () => {
     }
 
     let categoriesList = {}
-    for (let i = 35000; i < 35100; i++) {
+    for (let i = 1; i < 100; i++) {
 
 
         var apiUrl = `https://api.stlouisfed.org/fred/category?category_id=${i}&api_key=648627c409b96041497804cd3b77cce1&file_type=json`;
