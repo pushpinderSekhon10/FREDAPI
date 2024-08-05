@@ -1,3 +1,4 @@
+let myChart;
 document.getElementById('fetch-data-button-c').addEventListener('click', () => {
 
             
@@ -150,6 +151,7 @@ document.getElementById('fetch-data-button-s').addEventListener('click', () => {
                     
                     // Add more cases as needed
                 }
+                
 
             
             
@@ -183,7 +185,10 @@ function displayData(data, name, tableBody)
             const cell = row.insertCell(index);
             cell.textContent = x[key];
         });
+        
     });
+    chartBuild(data);
+    
 }
 function correctURL(type, id, subType, tag, apiKey)
 {
@@ -204,10 +209,12 @@ function correctURL(type, id, subType, tag, apiKey)
         apiUrl = `https://api.stlouisfed.org/fred/${type}/${subType}?${type}_id=${id}&api_key=${apiKey}&tag_names=${tag};quarterly&file_type=json`;
         
     }
+    document.getElementById('api').innerHTML = apiUrl
 
     return apiUrl;
 
 }
+
 
 
 
@@ -219,7 +226,7 @@ document.getElementById('test').addEventListener('click', async () => {
     }
 
     let categoriesList = {}
-    for (let i = 35000; i < 35100; i++) {
+    for (let i = 1; i < 100; i++) {
 
 
         var apiUrl = `https://api.stlouisfed.org/fred/category?category_id=${i}&api_key=648627c409b96041497804cd3b77cce1&file_type=json`;
@@ -251,3 +258,38 @@ document.getElementById('test').addEventListener('click', async () => {
     console.log(categoriesList)
 
 });
+ // Variable to hold the chart instance
+
+document.getElementById('genChart').addEventListener('click', async () => {
+    chartBuild();
+});
+
+function chartBuild(data) {
+    // Destroy existing chart instance if it exists
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    const ctx = document.getElementById('dataChart').getContext('2d');
+    const names = data.observations.map(observation => observation.date);
+    const values = data.observations.map(observation => observation.value);
+
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: names,
+            datasets: [{
+                label: '# of Votes',
+                data: values,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+}

@@ -7,6 +7,9 @@
 <body>
     <h1>FRED Data</h1>
     <button id="test">Test</button>
+    <button id="test2">Test2</button>
+    <button id="genChart">genChart</button>
+    <h2 id = 'api'>api</h2>
     
     <h3>Category</h3>
         
@@ -131,36 +134,10 @@
 
     <script src="apiPull.js"></script>
     <div>
-        <canvas id="myChart"></canvas>
+        <canvas id="dataChart"></canvas>
       </div>
       
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
-      <script>
-        const ctx = document.getElementById('myChart');
-      
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      </script>
-
-       <div style="width: 800px;"><canvas id="chart"></canvas></div>
-       <script type="module" src="chart.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="apiPull.js" defer></script>
 </body>
 </html>
