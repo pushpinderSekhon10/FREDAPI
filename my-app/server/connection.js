@@ -5,7 +5,7 @@ the dotenv pkg has config() that will parse the variables in the config.env file
 the process object is a global object that allows you to interact with the js runtime enviornment
 */
 
-//this file is for testing the connection
+//THIS FILE IS FOR TESTING CONNECTION
 
 (async () =>{
     const client = new Client({

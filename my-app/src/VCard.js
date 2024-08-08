@@ -1,8 +1,8 @@
 import './styles/VCard.css';
 
-function VCard(){
+function VCard({onClose}){
 
-
+    
     return (
         <section className="Card">
             <h2 className="country">CANADA</h2>
