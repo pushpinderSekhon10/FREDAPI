@@ -4,6 +4,7 @@ import VCard from './VCard.js'
 
 function App() {
   const [ID, setID] = useState("");
+  const [fredURL, setFredURL] = useState("");
   const [isVCard, setIsVCard] = useState(false)
   const inputRef = useRef()
 
@@ -21,14 +22,13 @@ function App() {
   }
 
   function handleClick() {
-    console.log("im called")
+    //console.log("im called")
     setID(inputRef.current.value)
   }
 
 
   useEffect( () =>{
-    //console.log(ID)
-
+    
     async function getKeys(){
       const response = await fetch(`http://localhost:3001/fredkeys/${ID}`)
       if (!response.ok) {
@@ -38,17 +38,27 @@ function App() {
       }
 
       const cardKey = await response.json()
-      console.log(cardKey)
-      openCard()
+      
+      //console.log(cardKey.series_id.toString())
+      
+      var apiUrl = correctURL(type, cardKey.series_id, subType, tag, apiKey )
+      console.log(apiUrl)
+      setFredURL(apiUrl)
+      
+      //openCard()
     }
 
     if (ID !== ""){
     getKeys()
-    //openCard()
     }
   }, [ID])
-  
-  
+
+  useEffect( () => {
+    if(fredURL !== ""){
+      openCard()
+    }
+  }, [fredURL])
+
   return (
     <>
     <section className="dashboard">
@@ -72,11 +82,33 @@ function App() {
         
     </section>
 
-    {isVCard && <VCard onClose={closeCard}/>}
+    {isVCard && <VCard onClose={closeCard} onOpen={openCard} url={fredURL}/>}
 
     <div className="spacer"></div>
     </>  
   );
+}
+
+function correctURL(type, id, subType, tag, apiKey)
+{
+    var apiUrl = `https://api.stlouisfed.org/fred/${type}?api_key=${apiKey}&file_type=json`;
+
+    if (id!= 0)
+    {
+        apiUrl = `https://api.stlouisfed.org/fred/${type}?${type}_id=${id}&api_key=${apiKey}&file_type=json`;
+    }
+
+    if (subType!=0)
+    {
+        apiUrl = `https://api.stlouisfed.org/fred/${type}/${subType}?${type}_id=${id}&api_key=${apiKey}&file_type=json`;
+    }
+    
+    if(tag!=0)
+    {
+        apiUrl = `https://api.stlouisfed.org/fred/${type}/${subType}?${type}_id=${id}&api_key=${apiKey}&tag_names=${tag};quarterly&file_type=json`;
+        
+    }
+    return apiUrl;
 }
 
 export default App;

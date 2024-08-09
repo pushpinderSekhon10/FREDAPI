@@ -1,7 +1,25 @@
 import './styles/VCard.css';
+import {useEffect} from 'react';
 
-function VCard({onClose}){
+function VCard({onClose, onOpen, url}){
 
+    useEffect( () => {
+        console.log("VCARD useEffect called ")
+
+        async function getData() {
+
+            const response =  await fetch(`http://localhost:3000/proxy?url=${encodeURIComponent(url)}`);
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                console.log(message);
+                return;
+              }
+            const data = await response.json();
+            console.log(data)
+            
+        }
+        getData()
+    },[url])
     
     return (
         <section className="Card">
