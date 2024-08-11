@@ -1,8 +1,16 @@
 import './styles/VCard.css';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import { CategoryScale } from "chart.js";
+import Chart from "chart.js/auto";
+import LineChart from './charts/LineChart.js';
 
-function VCard({onClose, onOpen, url}){
+Chart.register(CategoryScale);
 
+function VCard({onClose, url}){
+    const [chartData, setChartData] = useState({
+        lables: [],
+        datasets: []
+    })
     useEffect( () => {
         console.log("VCARD useEffect called ")
 
@@ -14,9 +22,20 @@ function VCard({onClose, onOpen, url}){
                 console.log(message);
                 return;
               }
-            const data = await response.json();
-            console.log(data)
-            
+            const urlData = await response.json();
+            //console.log(urlData)
+            console.log(urlData.observations)
+            console.log(Array.isArray(urlData.observations))
+
+            setChartData(prev  => ({
+                ...prev,
+                
+                labels: urlData.observations.map(observation => observation.date ),
+                datasets:[{
+                    data: urlData.observations.map(observation => observation.value),
+                    borderWidth: 2
+                }]
+            }))
         }
         getData()
     },[url])
@@ -27,7 +46,7 @@ function VCard({onClose, onOpen, url}){
             <div className="cline"></div>
 
             <section className="graph">
-            
+                <LineChart cData={chartData}/>
             </section>
 
             <section className="infoTab">
