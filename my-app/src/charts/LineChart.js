@@ -1,4 +1,5 @@
 import { Line } from "react-chartjs-2";
+import "../styles/LineChart.css";
 
 function LineChart ({cData}) {
 
@@ -25,10 +26,12 @@ function LineChart ({cData}) {
                     y: {
                         beginAtZero: false
                     }
-                }
+                },
+
+                maintainAspectRatio: false
             }}
       />    
-        </div>
+    </div>
     )
 }
 

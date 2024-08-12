@@ -29,7 +29,7 @@ function VCard({onClose, url}){
 
             setChartData(prev  => ({
                 ...prev,
-                
+
                 labels: urlData.observations.map(observation => observation.date ),
                 datasets:[{
                     data: urlData.observations.map(observation => observation.value),
@@ -45,9 +45,9 @@ function VCard({onClose, url}){
             <h2 className="country">CANADA</h2>
             <div className="cline"></div>
 
-            <section className="graph">
-                <LineChart cData={chartData}/>
-            </section>
+            
+            <LineChart cData={chartData}/>
+            
 
             <section className="infoTab">
                 <div>
