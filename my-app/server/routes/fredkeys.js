@@ -7,7 +7,7 @@ router.get("/:id", async (req, res) => {
     try{
 
         const client = await getClient();
-        //console.log('Client connected');
+        console.log('Client connected');
         const result = await client.query('SELECT series_id FROM keys WHERE topic_id = $1', [req.params.id]);
         
         if (result.rows.length === 0) {
