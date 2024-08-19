@@ -12,6 +12,8 @@ function App() {
   const type= 'series'
   const subType= 'observations'
   const tag=''
+  
+
 
   const openCard = () => {
     setIsVCard(true)
@@ -40,6 +42,10 @@ function App() {
         console.log(message)
         return;
       }
+      App.use(cors({
+        origin: 'https://fredapi-pushpinder-sekhons-projects.vercel.app', // Replace with your frontend URL
+      }));
+      
 
       const cardKey = await response.json()
       
