@@ -19,10 +19,27 @@
 //   console.log(`App running on port ${port}.`)
 // })
 
+
+
 const express = require('express');
 const { Pool } = require('pg');
 
 const app = express();
+
+
+const cors = require('cors');
+
+
+app.use(cors()); // Enable CORS for all routes
+
+app.get('/fredkeys/GDP', (req, res) => {
+  // Your route logic
+  res.json({ data: 'Your data' });
+});
+
+app.listen(3001, () => {
+  console.log('Server running on http://localhost:3001');
+});
 const port = 3001;
 
 const pool = new Pool({
@@ -42,3 +59,5 @@ app.get('/fredkeys/GDP', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+
