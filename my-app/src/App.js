@@ -30,7 +30,11 @@ function App() {
   useEffect( () =>{
     
     async function getKeys(){
-      const response = await fetch(`postgres://default:84mQjWBuYqtC@ep-wild-morning-a4csaw5b-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require/fredkeys/${ID}`)
+      const response = await fetch('http://localhost:3000/fredkeys/GDP') // Use the actual URL of your backend
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error:', error));
+    
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`
         console.log(message)
