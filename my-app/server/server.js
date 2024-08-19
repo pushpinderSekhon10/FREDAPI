@@ -25,6 +25,9 @@ const express = require('express');
 const { Pool } = require('pg');
 
 const app = express();
+app.use(cors({
+  origin: 'https://fredapi-pushpinder-sekhons-projects.vercel.app', // Replace with your frontend URL
+}));
 
 
 const cors = require('cors');

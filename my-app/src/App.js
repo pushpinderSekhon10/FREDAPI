@@ -42,9 +42,7 @@ function App() {
         console.log(message)
         return;
       }
-      App.use(cors({
-        origin: 'https://fredapi-pushpinder-sekhons-projects.vercel.app', // Replace with your frontend URL
-      }));
+      
       
 
       const cardKey = await response.json()
