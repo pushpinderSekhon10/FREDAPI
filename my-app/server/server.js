@@ -21,7 +21,7 @@ app.get('/fredkeys/GDP', async (req, res) => {
     const result = await pool.query('SELECT * FROM your_table'); // Replace with your actual query and table name
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error('Error executing query', err.stack);
     res.status(500).send('Server error');
   }
 });
@@ -30,3 +30,4 @@ app.get('/fredkeys/GDP', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
