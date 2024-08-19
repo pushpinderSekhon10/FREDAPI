@@ -30,7 +30,7 @@ function App() {
   useEffect( () =>{
     
     async function getKeys(){
-      const response = await fetch(`http://localhost:3001/fredkeys/${ID}`)
+      const response = await fetch(`ep-wild-morning-a4csaw5b-pooler.us-east-1.aws.neon.tech/fredkeys/${ID}`)
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`
         console.log(message)
