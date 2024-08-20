@@ -32,7 +32,7 @@ function App() {
   useEffect( () =>{
     
     async function getKeys(){
-      const response = await fetch('http://localhost:3001/fredkeys/GDP') // Use the actual URL of your backend
+      const response = await fetch('https://backend-sand-six.vercel.app//fredkeys/GDP') // Use the actual URL of your backend
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error('Error:', error));
