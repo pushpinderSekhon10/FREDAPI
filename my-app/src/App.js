@@ -101,4 +101,10 @@ function correctURL(type, id, subType, tag, apiKey) {
   }
 
   if (tag) {
-    apiUrl = `https://api.stlouisfed.org/fred/${type}/${subType}?${type}_id=${id}&api_key=${apiKey}&
+    apiUrl = `https://api.stlouisfed.org/fred/${type}/${subType}?${type}_id=${id}&api_key=${apiKey}&tag_names=${tag}&file_type=json`;
+  }
+
+  return apiUrl;
+}
+
+export default App;
