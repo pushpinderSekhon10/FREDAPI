@@ -32,10 +32,28 @@ function App() {
   useEffect( () =>{
     
     async function getKeys(){
-      const response = await fetch('https://backend-sand-six.vercel.app//fredkeys/GDP') // Use the actual URL of your backend
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
+      const response = await fetch('https://backend-sand-six.vercel.app/fredkeys/GDP', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // You might need to add other headers if required by your backend.
+        },
+        mode: 'cors', // Ensure CORS mode is set correctly
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          // Handle your data here
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      
     
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`
